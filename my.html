@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Cloud Caller ---- By Rishi</title>
+        <script src="https://meet.jit.si/external_api.js"></script>
+    </head>
+    <body style="background-color:FloralWhite">
+	<div style="text-align:center;margin-top:200px">
+        <button id="start" type="start" style="background-color:Aqua;  border-radius: 25px;width:150px;height:50px" >Create Or Join Meeting</button>
+	</div>
+        <div id="jitsi-container"></div>
+        <script>
+            var button = document.querySelector('#start');
+            var container = document.querySelector('#jitsi-container');
+            var api = null;
+
+            button.addEventListener('click', () => {
+                var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var stringLength = 30;
+                function pickRandom () {
+                    return possible[Math.floor() * possible.length];
+                }
+                var randomString = Array.apply(null,Array(stringLength)).map (pickRandom).join('');
+
+                var domain = "meet.jit.si";
+                var options = {
+                    "roomName": randomString,
+                    "parentNode": container,
+                    "width": 600,
+                    "height": 600,
+                };
+                api = new JitsiMeetExternalAPI(domain, options);
+             });
+        </script>
+    </body>
+</html>
